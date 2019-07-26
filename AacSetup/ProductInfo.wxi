@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?include config.wxi ?>
+
+<Include>
+
+  <?define ComponentTypeID = 5F25D53D-ED30-4A44-A528-BC5CD31E8F4E ?>
+  
+  <?define ComponentCLSID = $(var.HAL_CLSID) ?>
+  <?define ComponentDescription =  $(var.HalDescription)?>
+  <?define ComponentName = $(var.HalName) ?>
+  <?define ComponentManufacturer = $(var.MyCompanyFullName) ?>
+  <?define ComponentVersion = "$(var.HalVerion)" ?>
+  <?define ComponentSpecVersion = "$(var.HalSpecVerion)" ?>
+
+  
+  <?define ProductId = $(var.MyProductId) ?>     
+  <?define ProductUpgradeCode = $(var.MyProductUpgradeCode) ?>     
+
+  <?define ProductName = $(var.ComponentName) ?>
+  <?define ProductManufacturer = $(var.ComponentManufacturer) ?>  
+  <?define ProductDescription = $(var.ComponentDescription) ?>    
+
+  <?define CompanyFolder = $(var.MyCompanyShortName) ?>        
+  <?define InstallFolder = "Aac_$(var.ComponentName)" ?>
+
+
+  
+  <?if $(var.Platform) = x64 ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?else ?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?endif ?>
+
+  <!--Release-->
+
+</Include>

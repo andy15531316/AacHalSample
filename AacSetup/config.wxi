@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+
+  <!-- The GUID of your HAL. This GUID is the same as the one defined in config.h of the sulotuion AacHal-->
+  <?define HAL_CLSID = 11111111-1111-1111-1111-111111111111 ?>
+
+  <!-- The unique GUID of your install package. Please Generate unique GUIDs to replace these-->
+
+  <?define MyProductUpgradeCode = 22222222-2222-2222-2222-222222222222 ?>
+  <?if $(var.Platform) = x64 ?>
+  <?define MyProductId = 11111111-1111-1111-1111-111111111111 ?>  
+  <?else ?>
+  <?define MyProductId = 33333333-3333-3333-3333-333333333333 ?>
+  <?endif ?>
+
+  
+  <?define MyCompanyShortName = "XXXX" ?>      <!-- The short name of your company used for naming the folder. For example: "ASUS"-->
+  <?define MyCompanyFullName = "XXXX XXXX" ?>  <!-- The full name of company name. For example: "ASUSTek COMPUTER INC." -->
+  <?define HalName = "XXXX" ?>           <!-- Set your HAL Name -->
+  <?define HalDescription = "XXXX" ?>    <!-- Set your HAL description -->
+  <?define HalDllFile_X86 = "AacHal_x86.dll" ?>   <!-- If you does change the dll name, keep it-->
+  <?define HalDllFile_X64 = "AacHal_x64.dll" ?>   <!-- If you does change the dll name, keep it-->
+  <?define HalVerion = "1.00.00" ?>
+  <?define HalSpecVerion = "1.00.00" ?>  <!-- Default is 1.00.00 -->
+  
+  
+
+
+
+
+</Include>

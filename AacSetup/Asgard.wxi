@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+
+  <?define CLSID = AAC0B993-3FC6-4DCF-872C-C3E347EAEA36 ?>
+  <?define vendor_short = "G.SKILL" ?>
+  <?define Manufacturer = "G.SKILL International Enterprise" ?>
+  <?define DeviceModel = "G.SKILL Trident Z RGB" ?>
+  <?define _ProductId = 46EEF4E1-2117-4D64-A953-F1DE092495EB ?>
+  <?define _ProductUpgradeCode = 1700D79F-7F77-4F36-9953-9095610FCC07 ?>
+  <?define _ProdunctName = $(var.vendor_short) AURA Component ?>
+  
+  
+
+
+</Include>

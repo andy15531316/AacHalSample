@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ProductInfo.wxi ?>
+  
+	<Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="HAL_X86" Guid="{DEC06D27-8FE2-4BB6-8DF7-FBDB172D6AB1}">
+        <File Id="HAL_DLL_X86" KeyPath="yes" Source="$(var.SolutionDir)$(var.Configuration)\$(var.HalDllFile_X86)" />
+      </Component>
+      <?if $(var.Platform) = x64 ?>
+        <Component Id="HAL_X64" Guid="{D5587EFF-81EC-47E5-9EF7-B6ADDA9F1C19}">
+          <File Id="HAL_DLL_X64" KeyPath="yes" Source="$(var.SolutionDir)$(var.Platform)\$(var.Configuration)\$(var.HalDllFile_X64)" />
+        </Component>
+      <?endif ?>
+      
+      <Component Id="RegistryEntries86" Guid="{CF1AD8FB-4306-4E9A-89F6-1DEB794F7622}">
+        <RegistryKey Root="HKCR" Key="CLSID\{109DC3E4-B9FF-4AF3-9008-AB13705D4E5F}\Instance\{E9BBD754-6CF4-492E-BA89-782177A2771B}\Instance\{$(var.ComponentCLSID)}" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Name="Description" Value="$(var.ComponentDescription)" />
+          <RegistryValue Type="string" Name="Name" Value="$(var.ComponentName)" />
+          <RegistryValue Type="string" Name="Manufacturer" Value="$(var.ComponentManufacturer)" />
+          <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
+          <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
+        </RegistryKey>
+      </Component>
+      <?if $(var.Platform) = x64 ?>
+      <Component Id="RegistryEntries64" Guid="{B96E2502-D25E-42FB-BAFB-A840870BD896}">
+        <RegistryKey Root="HKCR" Key="WOW6432Node\CLSID\{109DC3E4-B9FF-4AF3-9008-AB13705D4E5F}\Instance\{E9BBD754-6CF4-492E-BA89-782177A2771B}\Instance\{$(var.ComponentCLSID)}" Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Name="Description" Value="$(var.ComponentDescription)" />
+          <RegistryValue Type="string" Name="Name" Value="$(var.ComponentName)" />
+          <RegistryValue Type="string" Name="Manufacturer" Value="$(var.ComponentManufacturer)" />
+          <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
+          <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
+        </RegistryKey>
+      </Component>
+      <?endif ?>
+
+    </DirectoryRef>      
+	</Fragment>
+
+</Wix>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include ProductInfo.wxi ?>
+  
+	<Product Id="$(var.ProductId)" 
+           Name="$(var.ProductName)" 
+           Language="1033" 
+           Version="$(var.ComponentVersion)" 
+           Manufacturer="$(var.ProductManufacturer)" 
+           UpgradeCode="$(var.ProductUpgradeCode)">
+    <Package Id="*" 
+             Description="$(var.ProductDescription)" 
+             Comments="Copyright 2017 $(var.ProductManufacturer)" 
+             Manufacturer="$(var.ProductManufacturer)"
+             Languages="1033"
+             SummaryCodepage="1252"
+             InstallPrivileges="elevated"
+             InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="$(var.ProductDescription)" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <!-- <Directory Id="INSTALLFOLDER" Name="AacSetup" /> -->
+        <Directory Id="COMPANYFOLDER" Name="$(var.CompanyFolder)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.InstallFolder)" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <!-- <Component Id="ProductComponent"> -->
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- </Component> -->
+      <ComponentRef Id="HAL_X86" />
+      <ComponentRef Id="RegistryEntries86" />
+      <?if $(var.Platform) = x64 ?>
+      <ComponentRef Id="HAL_X64" />
+      <ComponentRef Id="RegistryEntries64" />
+      <?endif ?>
+
+    </ComponentGroup>
+    <!--</Fragment>
+                    這裡如果Fragment斷開就會註冊失敗
+  <Fragment>-->
+    <CustomAction Id="RegisterAac"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='[SystemFolder]cmd.exe /C start regsvr32 /s "[INSTALLFOLDER]$(var.HalDllFile_X86)"'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='ignore' />
+    <CustomAction Id="UnRegisterAac"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='[SystemFolder]cmd.exe /C regsvr32 /u /s "[INSTALLFOLDER]$(var.HalDllFile_X86)"'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='ignore' />
+    <CustomAction Id="RegisterAac64"
+              Directory="INSTALLFOLDER"
+              ExeCommand= '[SystemFolder]cmd.exe /C start regsvr32 /s "[INSTALLFOLDER]$(var.HalDllFile_X64)"'
+              Execute='deferred'
+              Impersonate='no'
+              Return='ignore' />
+    <CustomAction Id="UnRegisterAac64"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand= '[SystemFolder]cmd.exe /C regsvr32 /u /s "[INSTALLFOLDER]$(var.HalDllFile_X64)"'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='ignore' />
+    <!-- Schedule the custom action -->
+    <InstallExecuteSequence>
+      <Custom Action="RegisterAac" Sequence="6401">
+        NOT Installed
+      </Custom>
+      <Custom Action="UnRegisterAac" Sequence="1601">
+        ( Installed AND ( REMOVE = "ALL" OR AI_INSTALL_MODE = "Remove" ) )
+      </Custom>
+      <?if $(var.Platform) = x64 ?>
+      <Custom Action="RegisterAac64" Sequence="6402">
+        NOT Installed
+      </Custom>
+      <Custom Action="UnRegisterAac64" Sequence="1602">
+        ( Installed AND ( REMOVE = "ALL" OR AI_INSTALL_MODE = "Remove" ) )
+      </Custom>
+      <?endif ?>
+    </InstallExecuteSequence>
+  </Fragment>
+
+</Wix>

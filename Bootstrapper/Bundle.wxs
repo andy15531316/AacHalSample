@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" >
+  <?include config.wxi ?>
+  <Bundle Name="!(bind.packageName.Setup)"
+       Version="!(bind.packageVersion.Setup)"
+       Manufacturer="!(bind.packageManufacturer.Setup)"
+       UpgradeCode= "$(var.MyUpgradeCode)"
+       DisableRemove="yes"
+       DisableModify="yes"
+       IconSourceFile="setup.ico">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLargeLicense">
+      <bal:WixStandardBootstrapperApplication
+        LogoFile="setup.png"
+        LocalizationFile="Resources\HyperlinkTheme.wxl"
+        ThemeFile="Resources\HyperlinkLargeTheme.xml"
+        LicenseUrl=""
+        ShowVersion="yes"
+        SuppressRepair="yes"
+        SuppressOptionsUI="yes"/>
+    </BootstrapperApplicationRef>
+
+    <Chain>
+      <!-- TODO: Define the list of chained packages. -->
+      <!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
+      <MsiPackage
+        Id="Setup"
+        Compressed="yes"
+        SourceFile="..\AacSetup\bin\x86\$(var.Configuration)\AacSetup.msi"
+        InstallCondition='NOT VersionNT64'
+        Vital="yes">
+      </MsiPackage>
+
+      <MsiPackage
+        Id="Setup64"
+        Compressed="yes"
+        SourceFile="..\AacSetup\bin\x64\$(var.Configuration)\AacSetup.msi"
+        InstallCondition='VersionNT64'
+        Vital="yes">
+      </MsiPackage>
+
+    </Chain>
+  </Bundle>
+</Wix>
