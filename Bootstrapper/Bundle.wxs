@@ -24,7 +24,11 @@
     <Chain>
       <!-- TODO: Define the list of chained packages. -->
       <!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
-      <MsiPackage
+
+		<PackageGroupRef Id="DetectReboot" />
+
+
+		<MsiPackage
         Id="Setup"
         Compressed="yes"
         SourceFile="..\AacSetup\bin\x86\$(var.Configuration)\AacSetup.msi"
@@ -42,4 +46,21 @@
 
     </Chain>
   </Bundle>
+  <Fragment>
+	  <PackageGroup Id="DetectReboot">
+		  <ExePackage Id="DetectRebootexe"
+					  DisplayName="Detect pending reboot(s)"
+					  Cache="no"
+					  Compressed="yes"
+					  PerMachine="yes"
+					  Permanent="no"
+					  Vital="yes"
+					  SourceFile="$(var.ProjectDir)..\DetectPendingReboots\DetectPendingReboots.exe"
+					  InstallCommand=" $(var.MyUpgradeCode)">
+			  <ExitCode Value ="350" Behavior="error"/>
+			  <ExitCode Value ="0" Behavior="success" />
+			  <PayloadGroupRef Id="PAYLOADGROUP_DetectReboot"/>
+		  </ExePackage>
+	  </PackageGroup>
+  </Fragment>
 </Wix>

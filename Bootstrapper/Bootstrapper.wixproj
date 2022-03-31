@@ -20,6 +20,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bundle.wxs" />
+    <Compile Include="DetectReboot.wxs" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixBalExtension">

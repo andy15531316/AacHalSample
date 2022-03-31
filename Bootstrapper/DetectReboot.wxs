@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+
+
+		<!-- TODO: Put your code here. -->
+
+
+
+		<PayloadGroup Id="PAYLOADGROUP_DetectReboot">
+			<Payload SourceFile="$(var.ProjectDir)..\DetectPendingReboots\DetectPendingReboots.exe" Name="DetectPendingReboots.exe" />
+		</PayloadGroup>
+
+
+
+	</Fragment>
+</Wix>
