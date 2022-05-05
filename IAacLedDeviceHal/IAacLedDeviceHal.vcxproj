@@ -139,6 +139,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>IAacLedDeviceHal.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetDir)AsusInstallVerifier.exe" -mg -d "$(TargetDir)hasher.hash" -i "$(TargetDir)filelist.txt"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -160,6 +163,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>IAacLedDeviceHal.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(TargetDir)AsusInstallVerifier_x64.exe" -mg -d "$(TargetDir)hasher_x64.hash" -i "$(TargetDir)filelist.txt"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
