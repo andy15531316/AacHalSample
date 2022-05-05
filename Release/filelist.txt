@@ -1,0 +1,2 @@
+.\AacHal_x86.dll						    [INSTALLFOLDER]AacHal_x86.dll
+

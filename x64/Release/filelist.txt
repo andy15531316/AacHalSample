@@ -1,0 +1,3 @@
+.\AacHal_x64.dll						    [INSTALLFOLDER]AacHal_x64.dll
+
+
