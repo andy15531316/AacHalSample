@@ -7,10 +7,22 @@
       <Component Id="HAL_X86" Guid="{DEC06D27-8FE2-4BB6-8DF7-FBDB172D6AB1}">
         <File Id="HAL_DLL_X86" KeyPath="yes" Source="$(var.SolutionDir)$(var.Configuration)\$(var.HalDllFile_X86)" />
       </Component>
+      <Component Id="hasher.hash" Guid="{AC3B0795-25FB-450E-B755-2CA9212627BC}">
+		  <File Id="hasher.hash" KeyPath="yes" Source="$(var.AppInput)hasher.hash" Checksum="yes"/>
+	  </Component>
+      <Component Id="AsusInstallVerifier.exe" Guid="{3A361391-A774-4737-A274-82BEA5598C9A}">
+		  <File Id="AsusInstallVerifier.exe" KeyPath="yes" Source="$(var.AppInput)AsusInstallVerifier.exe" Checksum="yes"/>
+      </Component>
       <?if $(var.Platform) = x64 ?>
         <Component Id="HAL_X64" Guid="{D5587EFF-81EC-47E5-9EF7-B6ADDA9F1C19}">
           <File Id="HAL_DLL_X64" KeyPath="yes" Source="$(var.SolutionDir)$(var.Platform)\$(var.Configuration)\$(var.HalDllFile_X64)" />
         </Component>
+		<Component Id="hasher_x64.hash" Guid="{597ED36A-ED7D-4C8C-8998-E190FE8B369E}">
+			<File Id="hasher_x64.hash" KeyPath="yes" Source="$(var.SolutionDir)$(var.Platform)\$(var.Configuration)\hasher_x64.hash" Checksum="yes"/>
+		</Component>
+		<Component Id="AsusInstallVerifier_x64.exe" Guid="{2A900CEC-8794-4CE7-991E-6352702DAE1A}">
+			<File Id="AsusInstallVerifier_x64.exe" KeyPath="yes" Source="$(var.SolutionDir)$(var.Platform)\$(var.Configuration)\AsusInstallVerifier_x64.exe" Checksum="yes"/>
+		</Component>
       <?endif ?>
       
       <Component Id="RegistryEntries86" Guid="*">

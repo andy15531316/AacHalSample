@@ -46,9 +46,13 @@
       <!-- </Component> -->
       <ComponentRef Id="HAL_X86" />
       <ComponentRef Id="RegistryEntries86" />
+      <ComponentRef Id="hasher.hash" />
+      <ComponentRef Id="AsusInstallVerifier.exe" />
       <?if $(var.Platform) = x64 ?>
       <ComponentRef Id="HAL_X64" />
       <ComponentRef Id="RegistryEntries64" />
+      <ComponentRef Id="hasher_x64.hash" />
+      <ComponentRef Id="AsusInstallVerifier_x64.exe" />
       <?endif ?>
 
     </ComponentGroup>
@@ -79,6 +83,29 @@
                   Execute='deferred'
                   Impersonate='no'
                   Return='ignore' />
+    <CustomAction Id="verifyInstall"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='"[INSTALLFOLDER]AsusInstallVerifier.exe" -mv -d "[INSTALLFOLDER]hasher.hash" -l "[INSTALLFOLDER]verify.log" -p [\[]INSTALLFOLDER[\]]="[INSTALLFOLDER] "'
+                  Execute='deferred'
+                  Impersonate='yes'
+                  Return='check' />
+    <UI>
+		<ProgressText Action="verifyInstall">Verify installation...</ProgressText>
+    </UI>
+    <CustomAction Id="verifyInstall_x64"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='"[INSTALLFOLDER]AsusInstallVerifier_x64.exe" -mv -d "[INSTALLFOLDER]hasher_x64.hash" -l "[INSTALLFOLDER]verify.log" -p [\[]INSTALLFOLDER[\]]="[INSTALLFOLDER] "'
+                  Execute='deferred'
+                  Impersonate='yes'
+                  Return='check' />
+    <UI>
+		<ProgressText Action="verifyInstall_x64">Verify_x64 installation...</ProgressText>
+    </UI>
+	  
+	  
+	  
+	  
+	  
     <!-- Schedule the custom action -->
     <InstallExecuteSequence>
       <Custom Action="RegisterAac" Sequence="6401">
@@ -87,6 +114,7 @@
       <Custom Action="UnRegisterAac" Sequence="1601">
         ( Installed AND ( REMOVE = "ALL" OR AI_INSTALL_MODE = "Remove" ) )
       </Custom>
+      <Custom Action="verifyInstall" After="InstallFiles">NOT (REMOVE OR UPGRADINGPRODUCTCODE)</Custom>
       <?if $(var.Platform) = x64 ?>
       <Custom Action="RegisterAac64" Sequence="6402">
         NOT Installed
@@ -94,7 +122,10 @@
       <Custom Action="UnRegisterAac64" Sequence="1602">
         ( Installed AND ( REMOVE = "ALL" OR AI_INSTALL_MODE = "Remove" ) )
       </Custom>
+      <Custom Action="verifyInstall_x64" After="InstallFiles">NOT (REMOVE OR UPGRADINGPRODUCTCODE)</Custom>
+      <Custom Action="removeVerifier_x64" After="verifyInstall_x64"/>
       <?endif ?>
+      <Custom Action="removeVerifier" After="verifyInstall"/>
     </InstallExecuteSequence>
   </Fragment>
 
