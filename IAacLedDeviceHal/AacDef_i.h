@@ -47,19 +47,19 @@
  }
 
 
- // IAacLedDeviceOptSpeed
- class IAacLedDeviceOptSpeed : public IAacLedDevice
- {
- public:
+ //// IAacLedDeviceOptSpeed
+ //class IAacLedDeviceOptSpeed : public IAacLedDevice
+ //{
+ //public:
 
-	 virtual  HRESULT STDMETHODCALLTYPE SetEffectOptSpeed(
-		 /* [in] */ ULONG effectId,
-		 /* [in] */ ULONG *colors,
-		 /* [in] */ ULONG numberOfColors,
-		 /* [in] */ ULONG speed,
-		 /* [in] */ ULONG direction) = 0;
+	// virtual  HRESULT STDMETHODCALLTYPE SetEffectOptSpeed(
+	//	 /* [in] */ ULONG effectId,
+	//	 /* [in] */ ULONG *colors,
+	//	 /* [in] */ ULONG numberOfColors,
+	//	 /* [in] */ ULONG speed,
+	//	 /* [in] */ ULONG direction) = 0;
 
- };
+ //};
 
 
 #endif //__AAC_INTERFACE_DEF_I_H__
