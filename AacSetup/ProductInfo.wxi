@@ -3,15 +3,13 @@
 <?include config.wxi ?>
 
 <Include>
-
-  <?define ComponentTypeID = 5F25D53D-ED30-4A44-A528-BC5CD31E8F4E ?>
   
   <?define ComponentCLSID = $(var.HAL_CLSID) ?>
   <?define ComponentDescription =  $(var.HalDescription)?>
   <?define ComponentName = $(var.HalName) ?>
   <?define ComponentManufacturer = $(var.MyCompanyFullName) ?>
   <?define ComponentDeviceModel = $(var.DeviceModel) ?>
-  <?define ComponentDeviceType = "XXXX" ?>
+  <?define ComponentDeviceType = "$(var.HalDeviceType)" ?>
   <?define ComponentVersion = "$(var.HalVerion)" ?>
   <?define ComponentSpecVersion = "$(var.HalSpecVerion)" ?>
 

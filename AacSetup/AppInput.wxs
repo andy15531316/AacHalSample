@@ -34,7 +34,7 @@
 		  <RegistryValue Type="string" Name="DeviceType" Value="$(var.ComponentDeviceType)" />
           <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
           <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
-		  <RegistryValue Type="integer" Name="Pluging" Value= "1" />
+		  <RegistryValue Type="integer" Name="Pluging" Value= "$(var.HalPluging)" />
 		  <RegistryValue Type="string" Name="MsiUninstallString" Value="$(var.PlatformSytemFolder)msiexec.exe /quiet /x {$(var.ProductId)}"/>
 		  <RegistryValue Type="string" Name="UninstallString" Value="&quot;[CommonAppDataFolder]Package Cache\[UNINSTALLER_PATH]&quot; /uninstall /quiet"/>
         </RegistryKey>
@@ -49,7 +49,7 @@
 		  <RegistryValue Type="string" Name="DeviceType" Value="$(var.ComponentDeviceType)" />
           <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
           <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
-		  <RegistryValue Type="integer" Name="Pluging" Value= "1" />
+		  <RegistryValue Type="integer" Name="Pluging" Value= "$(var.HalPluging)" />
 		  <RegistryValue Type="string" Name="MsiUninstallString" Value="$(var.PlatformSytemFolder)msiexec.exe /quiet /x {$(var.ProductId)}"/>
 		  <RegistryValue Type="string" Name="UninstallString" Value="&quot;[CommonAppDataFolder]Package Cache\[UNINSTALLER_PATH]&quot; /uninstall /quiet"/>
         </RegistryKey>
