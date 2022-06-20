@@ -28,13 +28,14 @@
 		<PackageGroupRef Id="DetectReboot" />
 
 
-		<MsiPackage
+	  <MsiPackage
         Id="Setup"
         Compressed="yes"
         SourceFile="..\AacSetup\bin\x86\$(var.Configuration)\AacSetup.msi"
         InstallCondition='NOT VersionNT64'
         Vital="yes">
-      </MsiPackage>
+		<MsiProperty  Name="UNINSTALLER_PATH" Value="[WixBundleProviderKey]\$(var.TargetFileName)" />
+	  </MsiPackage>
 
       <MsiPackage
         Id="Setup64"
@@ -42,7 +43,8 @@
         SourceFile="..\AacSetup\bin\x64\$(var.Configuration)\AacSetup.msi"
         InstallCondition='VersionNT64'
         Vital="yes">
-      </MsiPackage>
+		<MsiProperty  Name="UNINSTALLER_PATH" Value="[WixBundleProviderKey]\$(var.TargetFileName)" />
+	  </MsiPackage>
 
     </Chain>
   </Bundle>
