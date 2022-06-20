@@ -3,6 +3,7 @@
 
 #include "AacLedDeviceHelp.h"
 #include "MyLedDevice_i.h"
+#include <string>
 
 typedef void* DeviceLightControl;
 
