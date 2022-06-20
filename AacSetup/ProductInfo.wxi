@@ -10,6 +10,8 @@
   <?define ComponentDescription =  $(var.HalDescription)?>
   <?define ComponentName = $(var.HalName) ?>
   <?define ComponentManufacturer = $(var.MyCompanyFullName) ?>
+  <?define ComponentDeviceModel = $(var.DeviceModel) ?>
+  <?define ComponentDeviceType = "XXXX" ?>
   <?define ComponentVersion = "$(var.HalVerion)" ?>
   <?define ComponentSpecVersion = "$(var.HalSpecVerion)" ?>
 
@@ -30,6 +32,12 @@
     <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
   <?else ?>
     <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?endif ?>
+
+  <?if $(var.Platform) = x64 ?>
+  <?define PlatformSytemFolder = [System64Folder] ?>
+  <?else ?>
+  <?define PlatformSytemFolder = [SystemFolder] ?>
   <?endif ?>
 
   <!--Release-->

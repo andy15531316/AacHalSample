@@ -101,8 +101,26 @@
     <UI>
 		<ProgressText Action="verifyInstall_x64">Verify_x64 installation...</ProgressText>
     </UI>
-	  
-	  
+
+	<CustomAction Id="removeVerifier"
+		Directory="INSTALLFOLDER"
+		Execute="deferred"
+		Impersonate="no"
+		Return="ignore"
+		ExeCommand='cmd /c "del /q /f """[INSTALLFOLDER]AsusInstallVerifier.exe""" """[INSTALLFOLDER]hasher.hash""" """[INSTALLFOLDER]verify.log""""' />
+	<UI>
+		<ProgressText Action="removeVerifier">Remove verifier files...</ProgressText>
+	</UI>
+
+	<CustomAction Id="removeVerifier_x64"
+			Directory="INSTALLFOLDER"
+			Execute="deferred"
+			Impersonate="no"
+			Return="ignore"
+			ExeCommand='cmd /c "del /q /f """[INSTALLFOLDER]AsusInstallVerifier_x64.exe""" """[INSTALLFOLDER]hasher_x64.hash""" """[INSTALLFOLDER]verify.log""""' />
+	<UI>
+		<ProgressText Action="removeVerifier_x64">Remove verifier files...</ProgressText>
+	</UI>
 	  
 	  
 	  

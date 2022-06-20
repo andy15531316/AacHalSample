@@ -8,10 +8,10 @@
         <File Id="HAL_DLL_X86" KeyPath="yes" Source="$(var.SolutionDir)$(var.Configuration)\$(var.HalDllFile_X86)" />
       </Component>
       <Component Id="hasher.hash" Guid="{AC3B0795-25FB-450E-B755-2CA9212627BC}">
-		  <File Id="hasher.hash" KeyPath="yes" Source="$(var.AppInput)hasher.hash" Checksum="yes"/>
+		  <File Id="hasher.hash" KeyPath="yes" Source="$(var.SolutionDir)$(var.Configuration)\hasher.hash" Checksum="yes"/>
 	  </Component>
       <Component Id="AsusInstallVerifier.exe" Guid="{3A361391-A774-4737-A274-82BEA5598C9A}">
-		  <File Id="AsusInstallVerifier.exe" KeyPath="yes" Source="$(var.AppInput)AsusInstallVerifier.exe" Checksum="yes"/>
+		  <File Id="AsusInstallVerifier.exe" KeyPath="yes" Source="$(var.SolutionDir)$(var.Configuration)\AsusInstallVerifier.exe" Checksum="yes"/>
       </Component>
       <?if $(var.Platform) = x64 ?>
         <Component Id="HAL_X64" Guid="{D5587EFF-81EC-47E5-9EF7-B6ADDA9F1C19}">
@@ -30,8 +30,13 @@
           <RegistryValue Type="string" Name="Description" Value="$(var.ComponentDescription)" />
           <RegistryValue Type="string" Name="Name" Value="$(var.ComponentName)" />
           <RegistryValue Type="string" Name="Manufacturer" Value="$(var.ComponentManufacturer)" />
+		  <RegistryValue Type="string" Name="DeviceModel" Value="$(var.ComponentDeviceModel)" />
+		  <RegistryValue Type="string" Name="DeviceType" Value="$(var.ComponentDeviceType)" />
           <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
           <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
+		  <RegistryValue Type="integer" Name="Pluging" Value= "1" />
+		  <RegistryValue Type="string" Name="MsiUninstallString" Value="$(var.PlatformSytemFolder)msiexec.exe /quiet /x {$(var.ProductId)}"/>
+		  <RegistryValue Type="string" Name="UninstallString" Value="&quot;[CommonAppDataFolder]Package Cache\[UNINSTALLER_PATH]&quot; /uninstall /quiet"/>
         </RegistryKey>
       </Component>
       <?if $(var.Platform) = x64 ?>
@@ -40,8 +45,13 @@
           <RegistryValue Type="string" Name="Description" Value="$(var.ComponentDescription)" />
           <RegistryValue Type="string" Name="Name" Value="$(var.ComponentName)" />
           <RegistryValue Type="string" Name="Manufacturer" Value="$(var.ComponentManufacturer)" />
+		  <RegistryValue Type="string" Name="DeviceModel" Value="$(var.ComponentDeviceModel)" />
+		  <RegistryValue Type="string" Name="DeviceType" Value="$(var.ComponentDeviceType)" />
           <RegistryValue Type="string" Name="Version" Value="$(var.ComponentVersion)" />
           <RegistryValue Type="string" Name="SpecVersion" Value="$(var.ComponentSpecVersion)" />
+		  <RegistryValue Type="integer" Name="Pluging" Value= "1" />
+		  <RegistryValue Type="string" Name="MsiUninstallString" Value="$(var.PlatformSytemFolder)msiexec.exe /quiet /x {$(var.ProductId)}"/>
+		  <RegistryValue Type="string" Name="UninstallString" Value="&quot;[CommonAppDataFolder]Package Cache\[UNINSTALLER_PATH]&quot; /uninstall /quiet"/>
         </RegistryKey>
       </Component>
       <?endif ?>
