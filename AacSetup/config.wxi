@@ -22,7 +22,7 @@
   <?define HalDescription = "XXXX" ?>    <!-- Set your HAL description -->
   <?define HalDllFile_X86 = "AacHal_x86.dll" ?>   <!-- If you doesn't change the dll name, keep it-->
   <?define HalDllFile_X64 = "AacHal_x64.dll" ?>   <!-- If you doesn't change the dll name, keep it-->
-  <?define HalVerion = "1.00.00" ?>
+  <?define HalVerion = "1.00.00.00" ?>
   <?define HalSpecVerion = "1.00.00" ?>  <!-- Default is 1.00.00 -->
   <?define HalDeviceType = "XXXX" ?>  <!-- Default is XXXX -->
   <?define HalPluging = "1" ?>  <!-- Default is 1 -->
